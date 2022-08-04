@@ -17,6 +17,15 @@ public class Post {
     @Column(name = "post_full_text")
     private String postFullText;
 
+    public Post() {
+    }
+
+    public Post(String postTitle, String postAnons, String postFullText) {
+        this.postTitle = postTitle;
+        this.postAnons = postAnons;
+        this.postFullText = postFullText;
+    }
+
     public Long getPostId() {
         return postId;
     }
