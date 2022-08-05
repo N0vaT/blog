@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,6 +38,15 @@ public class BlogController {
         Post post = new Post(title, anons, full_text);
         postService.savePost(post);
         return "redirect:/blog";
+    }
+
+    @GetMapping("/blog/{id}")
+    public String blogDetails(@PathVariable(value = "id") long postId, Model model){
+        if(!postService.existsById(postId)){
+            return "redirect:/blog";
+        }
+        model.addAttribute("post" , postService.findById(postId));
+        return "blog-details";
     }
 
 }
