@@ -14,8 +14,10 @@
         <h1 th:text="${el.postTitle}"/>
         <h2 th:text="${el.postAnons}"/>
         <p th:text="${el.postFullText}"/>
-        <a href="'/blog/' + ${el.postId} + '/edit'" class="btn btn-warning">Редактировать</a>
-        <a href="'/blog/' + ${el.postId} + '/remove'" class="btn btn-warning">Удалить</a>
+        <a th:href="'/blog/' + ${el.postId} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>
+        <form th:action="'/blog/' + ${el.postId} + '/remove'" method="post">
+        <button class="btn btn-warning" type="submit">Удалить</button>
+        </form>
     </div>
 </div>
 
